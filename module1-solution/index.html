@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="../angular.min.js"></script>
+        <script src="app.js"></script>
+        <link rel="stylesheet" href="../styles/bootstrap.min.css">
+        <style>
+          .message { font-size: 1.3em; font-weight: bold; }
+        </style>
+        <title>Module One: Food Counting Assignment</title>
+    </head>
+    <body ng-app="LunchCheck">
+        <div ng-controller="LunchCheckController">
+            <h2>Lunch Checker</h2>
+            <div class="form-group">
+                <input id="lunch-menu" type="text" 
+                    class="form-control" ng-model="food"
+                    placeholder="List lunch items separated by commas"/>
+            </div>
+            <div style="font-size: .5em;">(Note, empty space between commas is not considered a food item)</div>
+            <div class="form-group">
+                <button ng-click="checkFoodItems()">Check If Too Much</button>
+            </div>
+            <div class="form-group message">{{result_statement}}</div>
+        </div>
+    </body>
+</html>
