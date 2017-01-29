@@ -2,7 +2,8 @@
     'use strict';
     
     angular.module('ShoppingListApp', [])
-    .controller('ShoppingListCtrl', ShoppingListCtrl)
+    .controller('ShoppingListCtrl1', ShoppingListCtrl1)
+    .controller('ShoppingListCtrl2', ShoppingListCtrl2)
     .provider('ShoppingListService', ShoppingListServiceProvider)
     .config(Config);
 
@@ -32,18 +33,22 @@
         ];
     }
 
-    ShoppingListCtrl.$inject = ['ShoppingListService'];
-    function ShoppingListCtrl(ShoppingListService) {
+    ShoppingListCtrl1.$inject = ['ShoppingListService'];
+    function ShoppingListCtrl1(ShoppingListService) {
         var list1 = this;
 
         list1.items = ShoppingListService.getBuyItems();
-        
-        list1.boughtItems = ShoppingListService.getBoughtItems();
 
         list1.removeItem = function(itemIndex) {
-            console.log(itemIndex);
             ShoppingListService.removeItem(itemIndex);
         };
+    }
+
+    ShoppingListCtrl2.$inject = ['ShoppingListService'];
+    function ShoppingListCtrl2(ShoppingListService) {
+        var list2 = this;
+        
+        list2.items = ShoppingListService.getBoughtItems();
     }
 
     function ShoppingListService(items) {

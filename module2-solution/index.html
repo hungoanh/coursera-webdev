@@ -25,13 +25,13 @@
     </style>
   </head>
 <body ng-app="ShoppingListApp">
-  <div id="list1" class="container" ng-controller="ShoppingListCtrl as list1">
+  <div id="list1" class="container">
   <h1>Shopping List Check Off</h1>
 
   <div class="row">
 
     <!-- To Buy List -->
-    <div class="col-md-6">
+    <div class="col-md-6" ng-controller="ShoppingListCtrl1 as list1">
      <h2>To Buy:</h2>
      <ul>
        <li ng-repeat="item in list1.items">Buy {{item.quantity}} of {{item.name}}
@@ -44,12 +44,12 @@
     </div>
 
     <!-- Already Bought List -->
-    <div class="col-md-6">
+    <div class="col-md-6" ng-controller="ShoppingListCtrl2 as list2">
      <h2>Already Bought:</h2>
      <ul>
-       <li ng-repeat="item in list1.boughtItems">Bought {{item.quantity}} of {{item.name}}</li>
+       <li ng-repeat="item in list2.items">Bought {{item.quantity}} of {{item.name}}</li>
      </ul>
-     <div class="emptyMessage"ng-show="list1.boughtItems.length === 0">Nothing bought yet.</div>
+     <div class="emptyMessage"ng-show="list2.items.length === 0">Nothing bought yet.</div>
     </div>
   </div>
 </div>
