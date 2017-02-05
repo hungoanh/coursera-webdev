@@ -6,7 +6,6 @@ input[type="text"] {
   float: left;
 }
 .narrow-button {
-  float: left;
   margin-left: 10px;
 }
 .loader {

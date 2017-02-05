@@ -7,19 +7,30 @@ angular.module('NarrowItDownApp', [])
 .constant('ApiPath', "https://davids-restaurant.herokuapp.com")
 .directive('foundItems', FoundItems);
 
+function FoundItems() {
+    var ddo = {
+        templateUrl: 'foundItems.html',
+        scope: {
+            list: '<foundList'
+        }
+    };
+    return ddo;
+}
+
 NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
     var menu = this;
 
-    menu.getMatchedItems = function() {
-        MenuSearchService.getMatchMenuItems(menu.searchTerm);
+    var foundMenu = MenuSearchService;
+    menu.getMatchedMenuItems = function() {
+        var promise = MenuSearchService.getMatchMenuItems(menu.searchTerm);
+        promise.then(function(value){
+            menu.found = value;
+        });
     }
 
-    menu.items = MenuSearchService.getItems();
-
-    console.log(menu.items);
-
     menu.removeItem = function(itemIndex) {
+        console.log("remove item");
         MenuSearchService.removeItem(itemIndex);
     }
 }
@@ -42,6 +53,7 @@ function MenuSearchService($http, ApiPath) {
                     found.push(item);
                 }
             }
+            //console.log(found);
             return found;
         })
         .catch(function(error) {
@@ -50,23 +62,13 @@ function MenuSearchService($http, ApiPath) {
     }
 
     service.getItems = function() {
+        console.log(found);
         return found;
     }
 
     service.removeItem = function(itemIndex) {
-        items.splice(itemIndex, 1);
+        found.splice(itemIndex, 1);
     }
-}
-
-FoundItems.$inject = ['MenuSearchService'];
-function FoundItems() {
-    var ddo = {
-        scope: {
-            list: '=foundItems'
-        },
-        templateURL: './foundItems.html'
-    };
-    return ddo;
 }
 
 })();
