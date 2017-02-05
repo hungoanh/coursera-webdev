@@ -29,9 +29,7 @@ function NarrowItDownController(MenuSearchService) {
             menu.found = value;
         });
     }
-
     menu.removeItem = function(itemIndex) {
-        console.log("remove item");
         MenuSearchService.removeItem(itemIndex);
     }
 }
@@ -54,17 +52,11 @@ function MenuSearchService($http, ApiPath) {
                     found.push(item);
                 }
             }
-            //console.log(found);
             return found;
         })
         .catch(function(error) {
             log.error("Fail to fetch data");
         });
-    }
-
-    service.getItems = function() {
-        console.log(found);
-        return found;
     }
 
     service.removeItem = function(itemIndex) {
