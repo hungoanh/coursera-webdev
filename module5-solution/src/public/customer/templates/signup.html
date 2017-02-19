@@ -60,16 +60,16 @@
               <input type="text" class="form-control" placeholder="Favorite Category Code" 
                 name="favorite" ng-model="signupController.favorite">
             </div>
+            <span>
+              <favorite-list ng-if="signupController.error" item="signupController.item"></favorite-list>
+            </span>
           </div>
           <div class="clearfix">
             <input class="btn btn-default" type="button" ng-disabled="customerForm.$invalid" 
               value="Submit" ng-click="customerForm.$valid && signupController.submit()">
           </div>
+          <favorite-list ng-if="signupController.error === false" item="signupController.item"></favorite-list>
       </form>
     </div>
-  </div>
-  <div>
-    <favorite-list item="signupController.item"></favorite-list>
-    <div ng-show="signupController.error">No such number exists!</div>
   </div>
 </div>

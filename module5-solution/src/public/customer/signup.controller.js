@@ -13,7 +13,7 @@ function SignupController(MenuService) {
     var promise = MenuService.getMenuItemByShortName(ctrl.favorite);
     promise.then(function (value) {
       if (value.status === 200) {
-        ctrl.item = "Your favorite dish is " + value.data.name;
+        ctrl.item = "Your information has been saved!";
         MenuService.setCustomerInfo({
           firstname: ctrl.firstname,
           lastname: ctrl.lastname,
@@ -22,6 +22,7 @@ function SignupController(MenuService) {
           favorite: ctrl.favorite
         });
       } else {
+        ctrl.error = true;
         ctrl.item = "No such menu number exists!";
       }
     });

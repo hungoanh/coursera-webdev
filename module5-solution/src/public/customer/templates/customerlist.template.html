@@ -5,16 +5,23 @@
 <div class="panel-body">
 <div class="row">
   <div class="col-xs-4">
-    <div>{{ $ctrl.item.fullname }}</div>
+    <label>Customer Info:<div>{{ $ctrl.item.fullname }}</div></label>
     <div>{{ $ctrl.item.email }}</div>
     <div>{{ $ctrl.item.phone }}</div>
   </div>
-  <div>
-    <div>{{ $ctrl.item.favorite}}</div>
-    <div class="menu-item-photo">
-      <img class="img-responsive" width="250" height="150" 
-        ng-src="{{$ctrl.item.basePath}}/images/{{$ctrl.item.favorite}}.jpg" 
-        alt="{{$ctrl.item.favorite}}">
+  <div class="menu-item-tile col-md-8">
+    <div class="row">
+      <div class="col-sm-10">
+        <div class="menu-item-photo">
+          <img class="img-responsive" width="250" height="150"
+            ng-src="{{$ctrl.item.basePath}}/images/{{$ctrl.item.favorite}}.jpg"
+            alt="{{$ctrl.item.favorite}}">
+        </div>
+        <div class="menu-item-description col-sm-7">
+          <h3 class="menu-item-title">{{$ctrl.item.favoriteName}}</h3>
+          <p class="menu-item-details">{{$ctrl.item.favoriteDescription}}</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
